@@ -7,7 +7,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/core.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/thesaas.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('acss/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="{{ asset('img/apple-touch-icon.png') }}">
@@ -34,30 +34,27 @@
             <div class="topbar-right">
                 <ul class="topbar-nav nav">
                     <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                    @auth
-                    <li class="nav-item"><a href="" class="nav-link">All series</a></li>
-                    <li class="nav-item"><a href="" class="nav-link">Create series</a></li>
-                    @else
-
+                    @if(auth()->check())
                         <li class="nav-item">
                             <a class="nav-link"
-                               href="">Hey</a>
+                               href="">Hey {{ auth()->user()->name}}</a>
                         </li>
-
-                        @endauth
                         <li class="nav-item">
                             <a href="" class="nav-link">All series</a>
                         </li>
+                        <li class="nav-item"><a href="" class="nav-link">All series</a></li>
+                        <li class="nav-item"><a href="" class="nav-link">Create series</a></li>
+                    @endif
 
-                        @guest
-                        <li class="nav-item">
-                            <a href="" class="nav-link">All series</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="javascript:;" data-toggle="modal"
-                               data-target="#loginModal">Login</a>
-                        </li>
-                        @endguest
+                    @guest
+                    <li class="nav-item">
+                        <a href="" class="nav-link">All series</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:;" data-toggle="modal"
+                           data-target="#loginModal">Login</a>
+                    </li>
+                    @endguest
                 </ul>
             </div>
 
@@ -65,8 +62,8 @@
     </nav>
     <!-- END Topbar -->
     <!-- Header -->
-    @yield('header')
-    <!-- END Header -->
+@yield('header')
+<!-- END Header -->
     <!-- Main container -->
     <main class="main-content">
 
@@ -75,10 +72,10 @@
     </main>
     <!-- END Main container -->
 
-@guest
-@endguest
+    @guest
     <login></login>
-<!-- Footer -->
+    @endguest
+    <!-- Footer -->
     <footer class="site-footer">
         <div class="container">
             <div class="row gap-y justify-content-center">
@@ -96,9 +93,9 @@
 </div>
 
 <!-- Scripts -->
-<script src="{{ asset('assets/js/core.min.js') }}"></script>
-<script src="{{ asset('assets/js/thesaas.min.js') }}"></script>
-<script src="{{ asset('assets/js/script.js') }}"></script>
+<script src="{{ asset('js/core.min.js') }}"></script>
+<script src="{{ asset('js/thesaas.min.js') }}"></script>
+<script src="{{ asset('js/script.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Exceptions\AuthFailedException;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -35,5 +37,22 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    protected function authenticated(Request $request, $user)
+    {
+        session()->flash('success', 'Successfully loggedin');
+        if (request()->ajax()) {
+            return response()->json([
+                'status' => 'ok'
+            ]);
+        }
+
+        return redirect('/');
+    }
+
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        throw new AuthFailedException();
     }
 }
