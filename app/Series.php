@@ -12,4 +12,9 @@ class Series extends Model
      * @var array
      */
     protected $guarded = []; // assign all columns
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }
