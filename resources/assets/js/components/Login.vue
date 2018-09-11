@@ -36,7 +36,7 @@
                         </button>
                     </div>
                 </form>
-                <p class="text-center text-muted fs-13 mt-20">Don't have an account? <a href="#">Sign up</a>
+                <p class="text-center text-muted fs-13 mt-20">Don't have an account? <a href="/register">Sign up</a>
                 </p>
             </div>
         </div>
