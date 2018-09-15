@@ -47821,8 +47821,10 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CreateLesson_vue__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__CreateLesson_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__CreateLesson_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CreateLesson_vue__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CreateLesson_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__CreateLesson_vue__);
 //
 //
 //
@@ -47849,12 +47851,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['default_lessons', 'series_id'],
     components: {
-        CreateLesson: __WEBPACK_IMPORTED_MODULE_0__CreateLesson_vue___default.a
+        CreateLesson: __WEBPACK_IMPORTED_MODULE_1__CreateLesson_vue___default.a
     },
     data: function data() {
         return {
@@ -47872,6 +47875,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         createNewLesson: function createNewLesson() {
             this.$emit('create_new_lesson', this.series_id);
+        },
+        deleteLesson: function deleteLesson(id, key) {
+            var _this2 = this;
+
+            if (confirm("Are you sure you want to delete?") === true) {
+                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete('http://localhost:8000/admin/' + this.series_id + '/lessons/' + id).then(function (res) {
+                    _this2.lessons.splice(key, 1);
+                });
+            }
         }
     }
 });

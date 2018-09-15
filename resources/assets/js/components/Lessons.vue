@@ -25,6 +25,7 @@
 </template>
 
 <script>
+    import axios from 'axios';
     import CreateLesson from './CreateLesson.vue';
     export default{
         props: ['default_lessons', 'series_id'],
@@ -44,6 +45,14 @@
         methods: {
             createNewLesson() {
                 this.$emit('create_new_lesson', this.series_id);
+            },
+            deleteLesson(id, key) {
+                if (confirm("Are you sure you want to delete?") === true) {
+                    axios.delete(`http://localhost:8000/admin/${this.series_id}/lessons/${id}`)
+                        .then(res => {
+                            this.lessons.splice(key, 1);
+                        })
+                }
             }
         }
     }
