@@ -40,11 +40,22 @@
         mounted() {
             this.$on('lesson_created', (lesson) => {
                 this.lessons.push(lesson);
+            });
+            this.$on('lesson_updated', (lesson) => {
+                let lessonIndex = this.lessons.findIndex(l => {
+                    return lesson.id == l.id;
+                });
+
+                this.lessons.splice(lessonIndex, 1, lesson);
             })
         },
         methods: {
             createNewLesson() {
                 this.$emit('create_new_lesson', this.series_id);
+            },
+            editLesson(lesson) {
+                let seriesId = this.series_id;
+                this.$emit('edit_lesson', { lesson, seriesId});
             },
             deleteLesson(id, key) {
                 if (confirm("Are you sure you want to delete?") === true) {

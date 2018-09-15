@@ -55,15 +55,33 @@
             createLesson() {
                 axios.post(`http://localhost:8000/admin/${this.seriesId}/lessons`, this.lesson).then(res => {
                     this.$parent.$emit('lesson_created', res.data);
+                    this.lesson = {};
                     $('#createLesson').modal('hide');
                 }).catch(error => {
                     //window.handleErrors(error)
                 })
+            },
+            updateLesson() {
+                axios.put(`http://localhost:8000/admin/${this.seriesId}/lessons/${this.lessonId}`, this.lesson)
+                    .then(res => {
+                        $('#createLesson').modal('hide');
+                        this.lesson = {};
+                        this.$parent.$emit('lesson_updated', res.data);
+                    }).catch(err => console.log(err));
             }
         },
         mounted() {
             this.$parent.$on('create_new_lesson', (seriesId) => {
                 this.seriesId = seriesId;
+                this.editing = false;
+                $('#createLesson').modal();
+            });
+
+            this.$parent.$on('edit_lesson', ({ lesson, seriesId }) => {
+                this.editing = true;
+                this.seriesId = seriesId;
+                this.lesson = lesson;
+                this.lessonId = lesson.id;
                 $('#createLesson').modal();
             })
         }
