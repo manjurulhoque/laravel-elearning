@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::group(['prefix' => 'admin', 'middleware' => ['bindings']],function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['admin']],function () {
     //Route::get('series/{series}', 'SeriesController@show');
     Route::resource('series', 'SeriesController');
 });
