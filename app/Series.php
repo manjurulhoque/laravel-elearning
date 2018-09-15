@@ -17,4 +17,11 @@ class Series extends Model
     {
         return 'slug';
     }
+
+    protected $with = ['lessons']; // eager loading
+
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class);
+    }
 }

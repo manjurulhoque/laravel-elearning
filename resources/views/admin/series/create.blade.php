@@ -3,13 +3,13 @@
 @section('title') Create Series @stop
 
 @section('header')
-    <header class="header header-inverse" style="background-color: #c2b2cd;">
+    <header class="header header-inverse" style="background-color: #3acd17;">
         <div class="container text-center">
 
             <div class="row">
                 <div class="col-12 col-lg-8 offset-lg-2">
 
-                    <h1>Create a bahd series</h1>
+                    <h1>Create a series</h1>
                     <p class="fs-20 opacity-70">Let's make the world a better place for coders</p>
 
                 </div>

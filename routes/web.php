@@ -20,6 +20,7 @@ Auth::routes();
 Route::group(['prefix' => 'admin', 'middleware' => ['admin']],function () {
     //Route::get('series/{series}', 'SeriesController@show');
     Route::resource('series', 'SeriesController');
+    Route::resource('{series_by_id}/lessons', 'LessonsController');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
