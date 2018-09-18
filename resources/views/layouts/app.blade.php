@@ -40,9 +40,8 @@
                                href="">Hey {{ auth()->user()->name}}</a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">All series</a>
+                            <a href="{{ route('series.index') }}" class="nav-link">All series</a>
                         </li>
-                        <li class="nav-item"><a href="" class="nav-link">All series</a></li>
                         <li class="nav-item"><a href="{{ route('series.create') }}" class="nav-link">Create series</a></li>
                     @endif
 
