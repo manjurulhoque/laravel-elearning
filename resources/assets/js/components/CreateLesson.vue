@@ -57,8 +57,16 @@
                     this.$parent.$emit('lesson_created', res.data);
                     this.lesson = {};
                     $('#createLesson').modal('hide');
+                    this.$swal({
+                        type: 'success',
+                        text: 'Lesson created successfully'
+                    });
                 }).catch(error => {
                     //window.handleErrors(error)
+                    this.$swal({
+                        type: 'error',
+                        text: 'Something wrong' + error.message
+                    });
                 })
             },
             updateLesson() {
@@ -67,7 +75,16 @@
                         $('#createLesson').modal('hide');
                         this.lesson = {};
                         this.$parent.$emit('lesson_updated', res.data);
-                    }).catch(err => console.log(err));
+                        this.$swal({
+                            type: 'success',
+                            text: 'Lesson updated successfully'
+                        });
+                    }).catch(err => {
+                        this.$swal({
+                            type: 'error',
+                            text: 'Something wrong' + error.message
+                        });
+                    });
             }
         },
         mounted() {
@@ -77,7 +94,7 @@
                 $('#createLesson').modal();
             });
 
-            this.$parent.$on('edit_lesson', ({ lesson, seriesId }) => {
+            this.$parent.$on('edit_lesson', ({lesson, seriesId}) => {
                 this.editing = true;
                 this.seriesId = seriesId;
                 this.lesson = lesson;

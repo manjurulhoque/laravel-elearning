@@ -71,7 +71,6 @@
 
     </main>
     <!-- END Main container -->
-
     @guest
     <login></login>
     @endguest
